@@ -1,0 +1,122 @@
+/* Ruhsat360 — etkileşimler */
+(function () {
+  "use strict";
+
+  /* ---------- Navbar scroll durumu ---------- */
+  var header = document.getElementById("site-header");
+  function onScroll() {
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobil menü ---------- */
+  var toggle = document.getElementById("nav-toggle");
+  var links = document.getElementById("nav-links");
+  if (toggle && links) {
+    toggle.addEventListener("click", function () {
+      var open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    links.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* ---------- Scroll'da beliren bölümler ---------- */
+  var revealEls = document.querySelectorAll(".reveal, .reveal-up");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("visible"); });
+  }
+
+  /* ---------- Sayaç animasyonu (dashboard istatistikleri) ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    var dur = 1400;
+    var start = null;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if ("IntersectionObserver" in window && counters.length) {
+    var cio = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            cio.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    counters.forEach(function (el) { cio.observe(el); });
+  } else {
+    counters.forEach(function (el) {
+      el.textContent = el.getAttribute("data-count");
+    });
+  }
+
+  /* ---------- SSS: tek seferde bir cevap açık ---------- */
+  var faqs = document.querySelectorAll(".faq details");
+  faqs.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) {
+        faqs.forEach(function (other) {
+          if (other !== d) other.open = false;
+        });
+      }
+    });
+  });
+
+  /* ---------- İletişim formu → mailto ---------- */
+  var form = document.getElementById("contact-form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = (document.getElementById("f-name").value || "").trim();
+      var office = (document.getElementById("f-office").value || "").trim();
+      var email = (document.getElementById("f-email").value || "").trim();
+      var phone = (document.getElementById("f-phone").value || "").trim();
+      var msg = (document.getElementById("f-msg").value || "").trim();
+
+      var subject = "Ruhsat360 Demo Talebi — " + (office || name);
+      var bodyLines = [
+        "Ad Soyad: " + name,
+        "Ofis: " + (office || "-"),
+        "E-posta: " + email,
+        "Telefon: " + (phone || "-"),
+        "",
+        "Mesaj:",
+        msg || "-"
+      ];
+      var href =
+        "mailto:info@ruhsat360.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(bodyLines.join("\n"));
+      window.location.href = href;
+    });
+  }
+})();

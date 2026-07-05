@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruhsat360 — Mimarlık Ofisiniz İçin Proje, Evrak ve Ruhsat Takibi</title>
+  <meta name="description" content="Ruhsat360; mimarlık ofislerinin müşteri, proje, hizmet aşamaları ve evrak takibini tek panelden, ekipçe ve gerçek zamanlı yönetmesini sağlayan dijital takip sistemidir.">
+  <meta property="og:title" content="Ruhsat360 — Tek panelden proje, evrak ve ruhsat takibi">
+  <meta property="og:description" content="Mimarlık ofisleri için dijital proje, evrak ve ruhsat takip paneli. Ekibinizle gerçek zamanlı çalışın.">
+  <meta property="og:image" content="https://ruhsat360.com/assets/logo-square.png">
+  <meta property="og:url" content="https://ruhsat360.com">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="site-header">
+    <div class="nav-pill">
+      <a href="#top" class="nav-logo" aria-label="Ruhsat360 Ana Sayfa">
+        <img src="assets/logo-wide.png" alt="Ruhsat360" width="150" height="50">
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Ana menü">
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#nasil-calisir">Nasıl Çalışır</a>
+        <a href="#fiyatlandirma">Fiyatlandırma</a>
+        <a href="#danismanlik">Danışmanlık</a>
+        <a href="#sss">SSS</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+      <a href="#iletisim" class="btn btn-primary nav-cta">Demo İste</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-arc" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <span class="badge reveal">
+          <span class="badge-dot">Yeni</span> Ruhsat360 yayında — mimarlık ofisleri için
+        </span>
+        <h1 class="reveal delay-1">Tek panelden proje,<br>evrak ve <span class="text-gradient">ruhsat takibi</span>.</h1>
+        <p class="hero-sub reveal delay-2">
+          Müşteri, arsa sahibi, proje ve hizmet aşamalarınızı; dijital ve fiziksel evraklarınızı
+          ekibinizle birlikte gerçek zamanlı yönetin. Dağınık Excel tabloları ve kaybolan evraklar artık geride kaldı.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a href="#iletisim" class="btn btn-primary btn-lg">Ücretsiz Demo İste</a>
+          <a href="#fiyatlandirma" class="btn btn-ghost btn-lg">Fiyatlandırmayı Gör</a>
+        </div>
+        <p class="hero-note reveal delay-4">Mimarlık ofislerinin gerçek iş akışından doğdu · Google Drive entegrasyonu · 10 kişiye kadar ekip</p>
+
+        <!-- Dashboard mockup -->
+        <div class="dash reveal-up delay-4" aria-hidden="true">
+          <div class="dash-topbar">
+            <img src="assets/logo-wide.png" alt="" width="96" height="32">
+            <div class="dash-tabs">
+              <span class="active">Panel</span><span>Projeler</span><span>Kişiler</span><span>Evraklar</span><span>Takvim</span>
+            </div>
+            <div class="dash-avatar">AG</div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <small>Devam Eden Proje</small>
+                <strong data-count="14">0</strong>
+                <span class="up">▲ 2 bu ay</span>
+              </div>
+              <div class="dash-stat">
+                <small>Bekleyen Ruhsat</small>
+                <strong data-count="5">0</strong>
+                <span class="warn">3 hedef tarih yakın</span>
+              </div>
+              <div class="dash-stat">
+                <small>Tamamlanan Aşama</small>
+                <strong data-count="86">0</strong>
+                <span class="up">▲ %12</span>
+              </div>
+              <div class="dash-stat">
+                <small>Yüklenen Evrak</small>
+                <strong data-count="312">0</strong>
+                <span class="up">▲ 28 bu hafta</span>
+              </div>
+            </div>
+            <div class="dash-cols">
+              <div class="dash-card">
+                <h4>Aktif Projeler</h4>
+                <div class="dash-row">
+                  <span class="dot dot-orange"></span>
+                  <div><b>Konak Apartmanı</b><small>Yapı Ruhsatı · Aşama 4/6</small></div>
+                  <div class="bar"><i style="--w:66%"></i></div>
+                </div>
+                <div class="dash-row">
+                  <span class="dot dot-green"></span>
+                  <div><b>Sahil Villası</b><small>Mimari Proje · Aşama 6/6</small></div>
+                  <div class="bar"><i style="--w:100%"></i></div>
+                </div>
+                <div class="dash-row">
+                  <span class="dot dot-blue"></span>
+                  <div><b>Merkez Ofis Binası</b><small>Akustik Rapor · Aşama 2/5</small></div>
+                  <div class="bar"><i style="--w:40%"></i></div>
+                </div>
+                <div class="dash-row">
+                  <span class="dot dot-orange"></span>
+                  <div><b>Bahçe Konutları</b><small>Zemin Etüdü · Aşama 1/3</small></div>
+                  <div class="bar"><i style="--w:33%"></i></div>
+                </div>
+              </div>
+              <div class="dash-card">
+                <h4>Son Aktiviteler</h4>
+                <ul class="dash-feed">
+                  <li><i>📄</i> Vekaletname yüklendi — <b>Konak Apt.</b></li>
+                  <li><i>✅</i> "Belediye başvurusu" tamamlandı</li>
+                  <li><i>👤</i> Yeni görevli atandı — <b>Sahil Villası</b></li>
+                  <li><i>🔔</i> Hedef tarih yaklaşıyor — <b>İskan</b></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HİZMET ŞERİDİ ============ -->
+    <section class="marquee" aria-label="Takip edilen hizmet türleri">
+      <div class="marquee-track">
+        <span>✓ Mimari Proje</span><span>✓ Yapı Ruhsatı</span><span>✓ Akustik Rapor</span>
+        <span>✓ İskan / Yapı Kullanma İzni</span><span>✓ Zemin Etüdü</span><span>✓ Evrak Şablonları</span>
+        <span>✓ Vekaletname Takibi</span><span>✓ Google Drive</span>
+        <span>✓ Mimari Proje</span><span>✓ Yapı Ruhsatı</span><span>✓ Akustik Rapor</span>
+        <span>✓ İskan / Yapı Kullanma İzni</span><span>✓ Zemin Etüdü</span><span>✓ Evrak Şablonları</span>
+        <span>✓ Vekaletname Takibi</span><span>✓ Google Drive</span>
+      </div>
+    </section>
+
+    <!-- ============ ÖZELLİKLER ============ -->
+    <section class="section" id="ozellikler">
+      <div class="container">
+        <h2 class="section-title reveal">Mimarlık ofisi yönetimi için<br><span class="text-gradient">baştan sona tasarlandı</span></h2>
+        <p class="section-sub reveal delay-1">Ruhsat360'ın her özelliği, mimarlık bürolarının gerçek gündelik iş akışı düşünülerek geliştirildi.</p>
+
+        <div class="grid features-grid">
+          <article class="card reveal">
+            <div class="card-icon">👥</div>
+            <h3>Kişiler ve Vekaletname</h3>
+            <p>Müşteri, arsa sahibi ve müteahhidi tek kişi kartında birden fazla rolle tutun; vekaletname no/tarih/noter bilgisi ve taranmış dosyasıyla birlikte.</p>
+          </article>
+          <article class="card reveal delay-1">
+            <div class="card-icon">🏗️</div>
+            <h3>Proje Takibi</h3>
+            <p>Adres, ada/parsel/pafta ve kişi ilişkileriyle her proje kayıt altında. Proje bilgileri, hizmetler, evraklar, notlar ve aktivite geçmişi tek ekranda.</p>
+          </article>
+          <article class="card reveal delay-2">
+            <div class="card-icon">📋</div>
+            <h3>Hizmet Aşamaları</h3>
+            <p>Mimari Proje, Yapı Ruhsatı, İskan gibi hizmetlerin kendi aşama listesi proje bazında işaretlenir; hedef tarih ve durum takibiyle.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">🗂️</div>
+            <h3>Dijital + Fiziksel Evrak</h3>
+            <p>Dijital evraklar Google Drive'da proje klasörlerinde; basılı evraklar dolap/raf/klasör konumuyla kayıtlı. Kim yükledi, kim indirdi — hepsi geçmişte.</p>
+          </article>
+          <article class="card reveal delay-1">
+            <div class="card-icon">🔔</div>
+            <h3>Anlık Bildirimler</h3>
+            <p>Aşama tamamlama, evrak yükleme, not ekleme ve görevli atama — projedeki herkes uygulama içi bildirimle anında haberdar olur.</p>
+          </article>
+          <article class="card reveal delay-2">
+            <div class="card-icon">📝</div>
+            <h3>Evrak Şablonları</h3>
+            <p>Hazır dilekçe/sözleşme şablonları veya kendi Word şablonlarınız; proje verileriyle otomatik doldurulur, PDF olarak yazdırılır.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DERİN ÖZELLİK ============ -->
+    <section class="section section-split">
+      <div class="container split">
+        <div class="split-text">
+          <h2 class="reveal">Ekibiniz büyüdükçe<br>düzeniniz bozulmasın</h2>
+          <p class="reveal delay-1">Yönetici davet linkiyle ekip üyelerini katar, çalışanları projelere görevli olarak atar. Herkes yalnızca kendi yetkisindeki işlemleri yapar.</p>
+          <ul class="checklist reveal delay-2">
+            <li>Gmail ile giriş, davet linkiyle katılım — 10 kişiye kadar</li>
+            <li>Yönetici / personel rolleri ve yetki ayrımı</li>
+            <li>Proje bazlı görevli atama ve bildirimler</li>
+            <li>Koyu mod destekli panel ve takvim</li>
+          </ul>
+          <a href="#iletisim" class="btn btn-primary reveal delay-3">Ücretsiz Demo İste</a>
+        </div>
+        <div class="split-visual reveal-up" aria-hidden="true">
+          <div class="ring-glow"></div>
+          <img src="assets/icon.png" alt="" class="split-icon" width="180" height="180">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NASIL ÇALIŞIR ============ -->
+    <section class="section" id="nasil-calisir">
+      <div class="container">
+        <h2 class="section-title reveal">Üç adımda <span class="text-gradient">başlayın</span></h2>
+        <div class="grid steps-grid">
+          <div class="step reveal">
+            <span class="step-no">01</span>
+            <h3>Ofisinizi Kurun</h3>
+            <p>Yönetici hesabınızla kaydolun, ofisinizi birkaç dakikada oluşturun. İlk giren kişi yönetici olur.</p>
+          </div>
+          <div class="step reveal delay-1">
+            <span class="step-no">02</span>
+            <h3>Ekibinizi Ekleyin</h3>
+            <p>Davet linkiyle çalışanlarınızı katın; müşteri, arsa sahibi ve proje kayıtlarınızı girin.</p>
+          </div>
+          <div class="step reveal delay-2">
+            <span class="step-no">03</span>
+            <h3>Takip Edin</h3>
+            <p>Hizmet aşamalarını işaretleyin, evrakları yükleyin, bildirimlerle tüm ekip haberdar olsun.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FİYATLANDIRMA ============ -->
+    <section class="section" id="fiyatlandirma">
+      <div class="container">
+        <h2 class="section-title reveal">Ofisinize uygun <span class="text-gradient">planı seçin</span></h2>
+        <p class="section-sub reveal delay-1">Tüm planlar temel özellikleri içerir. Yıllık ödemede %20 indirim.</p>
+
+        <div class="grid pricing-grid">
+          <article class="price-card reveal">
+            <h3>Temel</h3>
+            <div class="price"><span class="amount">999₺</span><span class="per">/ay</span></div>
+            <ul>
+              <li>3 kullanıcıya kadar ekip</li>
+              <li>20 aktif projeye kadar</li>
+              <li>Dijital + fiziksel evrak takibi</li>
+              <li>E-posta desteği</li>
+            </ul>
+            <a href="#iletisim" class="btn btn-ghost">Hemen Başla</a>
+          </article>
+
+          <article class="price-card popular reveal delay-1">
+            <span class="pop-badge">En Popüler</span>
+            <h3>Profesyonel</h3>
+            <div class="price"><span class="amount">1.999₺</span><span class="per">/ay</span></div>
+            <ul>
+              <li>10 kullanıcıya kadar ekip</li>
+              <li>Sınırsız proje</li>
+              <li>Evrak şablonları + otomatik doldurma</li>
+              <li>Google Drive entegrasyonu</li>
+              <li>Öncelikli destek</li>
+            </ul>
+            <a href="#iletisim" class="btn btn-primary">Hemen Başla</a>
+          </article>
+
+          <article class="price-card reveal delay-2">
+            <h3>Kurumsal</h3>
+            <div class="price"><span class="amount">Özel</span></div>
+            <ul>
+              <li>Sınırsız kullanıcı ve proje</li>
+              <li>Kurulum ve veri aktarımı desteği</li>
+              <li>Özel entegrasyon talepleri</li>
+              <li>Atanmış müşteri temsilcisi</li>
+            </ul>
+            <a href="#iletisim" class="btn btn-ghost">Bize Ulaşın</a>
+          </article>
+        </div>
+        <p class="pricing-note reveal">İstediğiniz zaman iptal edebilirsiniz; erişiminiz dönem sonuna kadar devam eder.</p>
+      </div>
+    </section>
+
+    <!-- ============ DANIŞMANLIK ============ -->
+    <section class="section" id="danismanlik">
+      <div class="container">
+        <h2 class="section-title reveal">Kurulumdan eğitime, <span class="text-gradient">yanınızdayız</span></h2>
+        <p class="section-sub reveal delay-1">Ruhsat360'ı ofisinize en verimli şekilde entegre etmeniz için ücretli danışmanlık ve eğitim hizmetleri.</p>
+
+        <div class="grid consult-grid">
+          <article class="card consult reveal">
+            <div class="card-icon">🧭</div>
+            <h3>Kurulum Danışmanlığı</h3>
+            <p>Ofis yapınıza uygun hizmet türleri, aşama şablonları ve kullanıcı rollerinin birlikte yapılandırılması.</p>
+            <div class="consult-meta"><span>1 saat · online</span><b>750₺</b></div>
+            <a href="#iletisim" class="btn btn-ghost">Randevu Al</a>
+          </article>
+          <article class="card consult reveal delay-1">
+            <div class="card-icon">🎓</div>
+            <h3>Ekip Eğitimi</h3>
+            <p>Tüm ekibinize sistemin günlük kullanımının (proje açma, evrak yükleme, aşama takibi) uygulamalı anlatımı.</p>
+            <div class="consult-meta"><span>2 saat · online, ekip</span><b>1.500₺</b></div>
+            <a href="#iletisim" class="btn btn-ghost">Randevu Al</a>
+          </article>
+          <article class="card consult reveal delay-2">
+            <div class="card-icon">🔗</div>
+            <h3>Drive Entegrasyon Desteği</h3>
+            <p>Google Cloud/OAuth kurulumunun sizin adınıza yapılandırılmasında birebir destek.</p>
+            <div class="consult-meta"><span>45 dk · online</span><b>500₺</b></div>
+            <a href="#iletisim" class="btn btn-ghost">Randevu Al</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SSS ============ -->
+    <section class="section" id="sss">
+      <div class="container narrow">
+        <h2 class="section-title reveal">Sıkça sorulan <span class="text-gradient">sorular</span></h2>
+        <div class="faq reveal delay-1">
+          <details>
+            <summary>Verilerimiz ne kadar güvende?</summary>
+            <p>Verileriniz Google Firebase/Firestore altyapısında saklanır; yalnızca ofis üyeleriniz kendi hesaplarıyla erişebilir. Erişim kuralları, ofis dışından hiç kimsenin verilerinize ulaşamayacağı şekilde yapılandırılmıştır.</p>
+          </details>
+          <details>
+            <summary>Google Drive entegrasyonu zorunlu mu?</summary>
+            <p>Hayır, isteğe bağlıdır. Bağladığınızda uygulama yalnızca kendi oluşturduğu proje klasörlerine erişir; Drive'ınızdaki diğer dosyalara erişemez.</p>
+          </details>
+          <details>
+            <summary>Ekibime kaç kişi ekleyebilirim?</summary>
+            <p>Plana göre değişir; Temel planda 3, Profesyonel planda 10 kullanıcıya kadar ekip ekleyebilirsiniz. Kurumsal planda sınır yoktur.</p>
+          </details>
+          <details>
+            <summary>İstediğim zaman iptal edebilir miyim?</summary>
+            <p>Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz; mevcut fatura döneminin sonuna kadar erişiminiz devam eder.</p>
+          </details>
+          <details>
+            <summary>Masaüstü uygulaması var mı?</summary>
+            <p>Evet, Windows için kurulum dosyası mevcuttur; masaüstü uygulaması aynı canlı sistemi kullanır, internet bağlantısı gerektirir.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ İLETİŞİM ============ -->
+    <section class="section" id="iletisim">
+      <div class="container">
+        <div class="contact-wrap reveal">
+          <div class="contact-info">
+            <h2>Bize <span class="text-gradient">ulaşın</span></h2>
+            <p>Demo talebi, fiyat teklifi veya sorularınız için formu doldurun ya da doğrudan iletişime geçin.</p>
+            <ul class="contact-list">
+              <li><span>✉️</span><a href="mailto:info@ruhsat360.com">info@ruhsat360.com</a></li>
+              <li><span>📞</span><a href="tel:+905413488833">0541 348 88 33</a></li>
+              <li><span>📸</span><a href="https://instagram.com/ruhsat360" target="_blank" rel="noopener">instagram.com/ruhsat360</a></li>
+            </ul>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <input type="text" id="f-name" placeholder="Ad Soyad" required>
+              <input type="text" id="f-office" placeholder="Ofis Adı">
+            </div>
+            <div class="form-row">
+              <input type="email" id="f-email" placeholder="E-posta" required>
+              <input type="tel" id="f-phone" placeholder="Telefon">
+            </div>
+            <textarea id="f-msg" rows="4" placeholder="Mesajınız (ör. demo talebi)"></textarea>
+            <button type="submit" class="btn btn-primary btn-lg">Demo Talebi Gönder</button>
+            <small class="form-note">Gönder'e bastığınızda e-posta uygulamanız açılır; mesajınız info@ruhsat360.com adresine iletilir.</small>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo-wide.png" alt="Ruhsat360" width="170" height="57">
+        <p>Mimarlık ofisleri için dijital proje, evrak ve ruhsat takip paneli.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sayfalar</h4>
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#fiyatlandirma">Fiyatlandırma</a>
+        <a href="#danismanlik">Danışmanlık</a>
+        <a href="#sss">SSS</a>
+      </div>
+      <div class="footer-col">
+        <h4>Yasal</h4>
+        <a href="gizlilik.html">Gizlilik Politikası</a>
+        <a href="kullanim-sartlari.html">Kullanım Şartları</a>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <a href="mailto:info@ruhsat360.com">info@ruhsat360.com</a>
+        <a href="tel:+905413488833">0541 348 88 33</a>
+        <a href="https://instagram.com/ruhsat360" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Ruhsat360. Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
