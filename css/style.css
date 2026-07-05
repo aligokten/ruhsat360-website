@@ -566,9 +566,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .price-card:hover { transform: translateY(-6px); border-color: rgba(249, 115, 22, 0.4); }
 .price-card h3 { font-size: 18px; color: var(--muted); font-weight: 700; }
-.price { margin: 14px 0 22px; display: flex; align-items: baseline; gap: 6px; }
+.price { margin: 14px 0 14px; display: flex; align-items: baseline; gap: 6px; }
 .price .amount { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; }
 .price .per { color: var(--muted); font-weight: 600; }
+.price-audience { font-size: 14px; font-weight: 700; color: var(--amber); margin-bottom: 6px; }
+.price-desc { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
 .price-card ul { list-style: none; display: grid; gap: 11px; margin-bottom: 28px; }
 .price-card li {
   position: relative;
@@ -740,7 +742,40 @@ img { max-width: 100%; height: auto; display: block; }
 .legal-page h2 { font-size: 21px; margin: 34px 0 10px; }
 .legal-page p, .legal-page li { color: var(--muted); font-size: 15px; }
 .legal-page ul { padding-left: 22px; margin-top: 8px; }
+.legal-page li { margin-bottom: 6px; }
 .legal-page .back { display: inline-block; margin-bottom: 26px; color: var(--amber); text-decoration: none; font-weight: 600; }
+.legal-h3 { font-size: 17px; margin: 26px 0 8px; color: var(--text); }
+.legal-box {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.legal-box p { margin: 3px 0; color: var(--text); font-size: 14.5px; }
+.consent-list { list-style: none; padding-left: 0; margin-top: 16px; display: grid; gap: 12px; }
+.consent-list li {
+  position: relative;
+  padding: 14px 16px 14px 46px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-size: 14px;
+}
+.consent-list li strong { color: var(--text); display: block; margin-bottom: 4px; }
+.consent-list li::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid var(--orange);
+  background: rgba(249, 115, 22, 0.08);
+}
 
 /* ---------- Reveal animasyonları ---------- */
 .reveal, .reveal-up {
