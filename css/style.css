@@ -319,6 +319,104 @@ img { max-width: 100%; height: auto; display: block; }
 .dash-feed b { color: var(--text); }
 .dash-feed i { font-style: normal; }
 
+/* ---------- MacBook Pro mockup + galeri ---------- */
+.macbook {
+  margin: 70px auto 0;
+  width: min(940px, 100%);
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
+}
+.mb-lid {
+  position: relative;
+  border-radius: 22px;
+  padding: 12px;
+  background: linear-gradient(180deg, #3a3f47, #23262c);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 -18px 70px rgba(249, 115, 22, 0.14);
+}
+.mb-screen {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 10;
+}
+.mb-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+  max-width: 190px;
+  height: 20px;
+  background: #0b0d10;
+  border-radius: 0 0 10px 10px;
+  z-index: 3;
+}
+.mb-viewport { position: absolute; inset: 0; overflow: hidden; }
+.mb-track {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.mb-slide {
+  width: 25%;
+  height: 100%;
+  flex: 0 0 25%;
+}
+.mb-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0a0d14;
+}
+/* Alt gövde (taban) */
+.mb-base {
+  position: relative;
+  height: 22px;
+  margin: 0 auto;
+  width: 116%;
+  left: -8%;
+  border-radius: 3px 3px 12px 12px;
+  background: linear-gradient(180deg, #babdc4 0%, #6d7178 55%, #4a4d53 100%);
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.4), 0 14px 24px rgba(0, 0, 0, 0.5);
+}
+.mb-notch-b {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14%;
+  height: 8px;
+  background: linear-gradient(180deg, #34373d, #4a4d53);
+  border-radius: 0 0 8px 8px;
+}
+.mb-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+  position: relative;
+  z-index: 2;
+}
+.mb-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, width 0.25s ease;
+}
+.mb-dot:hover { background: rgba(255, 255, 255, 0.4); }
+.mb-dot.active {
+  width: 26px;
+  border-radius: 999px;
+  background: var(--grad);
+}
+
 /* ---------- Marquee ---------- */
 .marquee {
   border-block: 1px solid var(--line);

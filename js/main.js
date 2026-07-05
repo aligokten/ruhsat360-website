@@ -119,4 +119,44 @@
       window.location.href = href;
     });
   }
+
+  /* ---------- MacBook galeri: otomatik kaydırma ---------- */
+  var track = document.getElementById("mb-track");
+  var dotsWrap = document.getElementById("mb-dots");
+  if (track && dotsWrap) {
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".mb-dot"));
+    var count = dots.length;
+    var idx = 0;
+    var timer = null;
+    var DELAY = 3600;
+
+    function go(i) {
+      idx = (i + count) % count;
+      track.style.transform = "translateX(" + (-idx * 25) + "%)";
+      dots.forEach(function (d, n) { d.classList.toggle("active", n === idx); });
+    }
+    function next() { go(idx + 1); }
+    function start() {
+      stop();
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      timer = setInterval(next, DELAY);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach(function (d, n) {
+      d.addEventListener("click", function () { go(n); start(); });
+    });
+
+    var mb = document.querySelector(".macbook");
+    if (mb) {
+      mb.addEventListener("mouseenter", stop);
+      mb.addEventListener("mouseleave", start);
+    }
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    go(0);
+    start();
+  }
 })();
