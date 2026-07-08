@@ -102,12 +102,30 @@
       var email = (document.getElementById("f-email").value || "").trim();
       var phone = (document.getElementById("f-phone").value || "").trim();
       var msg = (document.getElementById("f-msg").value || "").trim();
+      var kvkk = document.getElementById("f-kvkk");
+      var kvkkConsent = !!(kvkk && kvkk.checked);
       var button = form.querySelector('button[type="submit"]');
       var note = document.getElementById("form-note");
 
       if (!office || !email) {
         if (note) {
           note.textContent = "Lütfen ofis adı ve e-posta alanlarını doldurun.";
+          note.className = "form-note error";
+        }
+        return;
+      }
+
+      if (!kvkkConsent) {
+        if (note) {
+          note.textContent = "Devam etmek için KVKK açık rıza onayını işaretlemelisiniz.";
+          note.className = "form-note error";
+        }
+        return;
+      }
+
+      if (!kvkkConsent) {
+        if (note) {
+          note.textContent = "Devam etmek için KVKK açık rıza onayını işaretlemelisiniz.";
           note.className = "form-note error";
         }
         return;
@@ -135,6 +153,8 @@
             email: email,
             phone: phone,
             message: msg,
+            kvkkConsent: kvkkConsent,
+            kvkkConsentAt: new Date().toISOString(),
             source: "ruhsat360.com"
           })
         });

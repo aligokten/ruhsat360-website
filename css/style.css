@@ -850,3 +850,32 @@ img { max-width: 100%; height: auto; display: block; }
   cursor: not-allowed;
   opacity: 0.65;
 }
+
+/* KVKK consent checkbox */
+.consent-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.consent-check input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--orange);
+  flex: 0 0 auto;
+}
+
+.consent-check a {
+  color: var(--orange);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.consent-check a:hover {
+  text-decoration: underline;
+}
