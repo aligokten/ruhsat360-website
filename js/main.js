@@ -91,32 +91,77 @@
     });
   });
 
-  /* ---------- İletişim formu → mailto ---------- */
+  /* ---------- İletişim formu → otomatik demo daveti ---------- */
   var form = document.getElementById("contact-form");
   if (form) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
+
       var name = (document.getElementById("f-name").value || "").trim();
       var office = (document.getElementById("f-office").value || "").trim();
       var email = (document.getElementById("f-email").value || "").trim();
       var phone = (document.getElementById("f-phone").value || "").trim();
       var msg = (document.getElementById("f-msg").value || "").trim();
+      var button = form.querySelector('button[type="submit"]');
+      var note = document.getElementById("form-note");
 
-      var subject = "Ruhsat360 Demo Talebi — " + (office || name);
-      var bodyLines = [
-        "Ad Soyad: " + name,
-        "Ofis: " + (office || "-"),
-        "E-posta: " + email,
-        "Telefon: " + (phone || "-"),
-        "",
-        "Mesaj:",
-        msg || "-"
-      ];
-      var href =
-        "mailto:info@ruhsat360.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\n"));
-      window.location.href = href;
+      if (!office || !email) {
+        if (note) {
+          note.textContent = "Lütfen ofis adı ve e-posta alanlarını doldurun.";
+          note.className = "form-note error";
+        }
+        return;
+      }
+
+      var oldText = button ? button.textContent : "";
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Gönderiliyor...";
+      }
+      if (note) {
+        note.textContent = "Demo talebiniz gönderiliyor...";
+        note.className = "form-note";
+      }
+
+      try {
+        var response = await fetch("https://europe-west1-artful-guru-474421-f9.cloudfunctions.net/createWebsitePlatformInvite", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            companyName: office,
+            contactName: name,
+            email: email,
+            phone: phone,
+            message: msg,
+            source: "ruhsat360.com"
+          })
+        });
+
+        var result = await response.json();
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message || "Başvuru gönderilemedi.");
+        }
+
+        if (note) {
+          note.textContent = "Başvurunuz alındı. Ruhsat360 demo davetiniz oluşturuldu.";
+          note.className = "form-note success";
+        }
+
+        form.reset();
+      } catch (error) {
+        if (note) {
+          note.textContent = error.message || "Bir hata oluştu. Lütfen tekrar deneyin.";
+          note.className = "form-note error";
+        }
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = oldText || "Demo Talebi Gönder";
+        }
+      }
     });
   }
 
