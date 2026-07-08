@@ -834,3 +834,19 @@ img { max-width: 100%; height: auto; display: block; }
   .nav-pill { position: relative; }
   .dash-tabs { display: none; }
 }
+
+/* Ruhsat360 lead form status */
+.form-note.success {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.form-note.error {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.contact-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
