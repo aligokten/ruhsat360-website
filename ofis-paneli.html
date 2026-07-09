@@ -24,6 +24,7 @@
       <a href="index.html#top" class="nav-logo" aria-label="Ruhsat360 Ana Sayfa">
         <img src="assets/logo-transparent.png" alt="Ruhsat360" width="150" height="50">
       </a>
+
       <nav class="nav-links" id="nav-links" aria-label="Ana menü">
         <a href="index.html#ozellikler">Özellikler</a>
         <a href="index.html#nasil-calisir">Nasıl Çalışır</a>
@@ -33,7 +34,9 @@
         <a href="ofis-paneli.html">Ofis Paneli</a>
         <a href="index.html#iletisim">İletişim</a>
       </nav>
+
       <a href="index.html#iletisim" class="btn btn-primary nav-cta">Demo İste</a>
+
       <button class="nav-toggle" id="nav-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -44,44 +47,108 @@
     <section class="panel-page">
       <div class="panel-glow" aria-hidden="true"></div>
 
-      <div class="container">
+      <div class="container panel-page-container">
         <div class="panel-page-head reveal">
           <span class="badge">
             <span class="badge-dot">Panel</span> Ruhsat360 ofis giriş ekranı
           </span>
 
           <h1>Ofis Paneli</h1>
+
           <p>
-            Ruhsat360 müşteri paneline bu sayfadan erişebilirsiniz. Giriş ekranı açılmazsa veya Google hesabı
-            tarayıcı içinde engellenirse paneli tam ekranda açın.
+            Ruhsat360 müşteri paneline güvenli şekilde erişin. En iyi deneyim için paneli tam ekranda açabilir,
+            mobil cihazlarda ana ekranınıza kısayol olarak ekleyebilirsiniz.
           </p>
 
           <div class="panel-actions">
             <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
               Paneli Tam Ekranda Aç
             </a>
-            <a href="index.html#iletisim" class="btn btn-ghost btn-lg">
-              Demo Talebi Oluştur
+
+            <a href="mailto:info@ruhsat360.com?subject=Ruhsat360%20Windows%20Masa%C3%BCst%C3%BC%20Uygulamas%C4%B1" class="btn btn-ghost btn-lg">
+              Windows Uygulamasını Talep Et
             </a>
+
+            <button type="button" class="btn btn-ghost btn-lg" id="mobile-guide-open">
+              Mobil Kullanım Kılavuzu
+            </button>
           </div>
 
           <p class="panel-domain-note">
-            Yakında doğrudan erişim: <strong>panel.ruhsat360.com</strong>
+            Daha iyi bir kullanım deneyimi için <strong>Windows Masaüstü uygulamamızı indirebilirsiniz.</strong>
           </p>
         </div>
 
         <div class="panel-frame-wrap reveal-up delay-1">
-          <iframe
-            src="https://panel.ruhsat360.com/"
-            title="Ruhsat360 Ofis Paneli"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allow="clipboard-read; clipboard-write; fullscreen"
-          ></iframe>
+          <div class="panel-browser-bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+
+          <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="panel-preview-link" aria-label="Ruhsat360 panelini tam ekranda aç">
+            <img src="assets/panel-1.jpg" alt="Ruhsat360 ofis paneli önizleme ekranı" class="panel-preview-img" loading="lazy">
+            <div class="panel-preview-overlay">
+              <span>Güvenli giriş için paneli tam ekranda açın</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mobile-guide-card reveal-up delay-2">
+          <div>
+            <h2>Mobil cihazlarda kullanım için</h2>
+            <p>
+              Ruhsat360’ı telefonunuzun ana ekranına ekleyerek uygulama gibi daha hızlı erişebilirsiniz.
+            </p>
+          </div>
+          <button type="button" class="btn btn-primary" id="mobile-guide-open-2">
+            Kılavuzu Aç
+          </button>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="guide-modal" id="mobile-guide-modal" aria-hidden="true">
+    <div class="guide-modal-backdrop" data-guide-close></div>
+
+    <div class="guide-modal-panel" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+      <button type="button" class="guide-modal-close" data-guide-close aria-label="Kapat">×</button>
+
+      <span class="badge">
+        <span class="badge-dot">Mobil</span> Ana ekrana ekleme
+      </span>
+
+      <h2 id="guide-title">Ruhsat360’ı ana ekrana ekleyin</h2>
+      <p class="guide-modal-sub">
+        Telefonunuzdan daha hızlı erişmek için paneli ana ekranınıza kısayol olarak ekleyebilirsiniz.
+      </p>
+
+      <div class="guide-steps">
+        <div class="guide-step">
+          <h3>Android</h3>
+          <ol>
+            <li>Tarayıcıda <strong>panel.ruhsat360.com</strong> adresini açın.</li>
+            <li>Sağ üstteki <strong>menü (⋮)</strong> simgesine dokunun.</li>
+            <li><strong>“Ana ekrana ekle”</strong> seçeneğini seçin.</li>
+            <li>İsmi <strong>Ruhsat360</strong> olarak kaydedin.</li>
+          </ol>
+        </div>
+
+        <div class="guide-step">
+          <h3>iPhone / iPad</h3>
+          <ol>
+            <li>Safari’de <strong>panel.ruhsat360.com</strong> adresini açın.</li>
+            <li>Alttaki <strong>Paylaş</strong> simgesine dokunun.</li>
+            <li><strong>“Ana Ekrana Ekle”</strong> seçeneğini seçin.</li>
+            <li>İsmi <strong>Ruhsat360</strong> olarak kaydedin.</li>
+          </ol>
+        </div>
+      </div>
+
+      <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg guide-panel-btn">
+        Paneli Aç
+      </a>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -89,6 +156,7 @@
         <img src="assets/logo-transparent.png" alt="Ruhsat360" width="170" height="57">
         <p>Mimarlık ofisleri için dijital proje, evrak ve ruhsat takip paneli.</p>
       </div>
+
       <div class="footer-col">
         <h4>Sayfalar</h4>
         <a href="index.html#ozellikler">Özellikler</a>
@@ -97,6 +165,7 @@
         <a href="index.html#sss">SSS</a>
         <a href="ofis-paneli.html">Ofis Paneli</a>
       </div>
+
       <div class="footer-col">
         <h4>Yasal</h4>
         <a href="gizlilik.html">Gizlilik Politikası</a>
@@ -104,6 +173,7 @@
         <a href="kvkk.html">KVKK Aydınlatma Metni</a>
         <a href="acik-riza.html">Açık Rıza Metni</a>
       </div>
+
       <div class="footer-col">
         <h4>İletişim</h4>
         <a href="mailto:info@ruhsat360.com">info@ruhsat360.com</a>
@@ -111,11 +181,45 @@
         <a href="https://instagram.com/ruhsat360" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
+
     <div class="container footer-bottom">
       <span>© 2026 Ruhsat360. Tüm hakları saklıdır.</span>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    const guideModal = document.getElementById("mobile-guide-modal");
+    const guideOpenButtons = [
+      document.getElementById("mobile-guide-open"),
+      document.getElementById("mobile-guide-open-2")
+    ].filter(Boolean);
+
+    function openGuideModal() {
+      guideModal?.classList.add("open");
+      guideModal?.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeGuideModal() {
+      guideModal?.classList.remove("open");
+      guideModal?.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    guideOpenButtons.forEach((button) => {
+      button.addEventListener("click", openGuideModal);
+    });
+
+    document.querySelectorAll("[data-guide-close]").forEach((button) => {
+      button.addEventListener("click", closeGuideModal);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeGuideModal();
+      }
+    });
+  </script>
 </body>
 </html>

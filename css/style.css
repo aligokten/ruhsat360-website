@@ -880,11 +880,18 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: underline;
 }
 
+
 /* ---------- Ofis Paneli sayfası ---------- */
 .panel-page {
   position: relative;
-  padding: 160px 0 90px;
+  padding: 150px 0 90px;
   overflow: hidden;
+}
+
+.panel-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .panel-glow {
@@ -903,7 +910,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 820px;
+  width: min(860px, 94vw);
   margin: 0 auto 34px;
 }
 
@@ -917,7 +924,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .panel-page-head p {
   margin: 18px auto 0;
-  max-width: 680px;
+  max-width: 720px;
   color: var(--muted);
   font-size: 16px;
 }
@@ -942,8 +949,8 @@ img { max-width: 100%; height: auto; display: block; }
 .panel-frame-wrap {
   position: relative;
   z-index: 2;
-  width: min(1380px, 96vw);
-  margin: 0 auto;
+  width: min(1180px, 94vw);
+  margin: 26px auto 0;
   border: 1px solid var(--line);
   border-radius: 28px;
   background:
@@ -953,25 +960,207 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 
-.panel-frame-wrap::before {
-  content: "";
-  display: block;
+.panel-browser-bar {
   height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 22px;
   border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+}
+
+.panel-browser-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+}
+
+.panel-browser-bar span:nth-child(1) { background: #ff5f57; }
+.panel-browser-bar span:nth-child(2) { background: #ffbd2e; }
+.panel-browser-bar span:nth-child(3) { background: #28c840; }
+
+.panel-preview-link {
+  position: relative;
+  display: block;
+  height: min(70vh, 720px);
+  min-height: 560px;
+  overflow: hidden;
+  background: #07101f;
+}
+
+.panel-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.96;
+  transform: scale(1.01);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.panel-preview-link:hover .panel-preview-img {
+  transform: scale(1.025);
+  opacity: 1;
+}
+
+.panel-preview-overlay {
+  position: absolute;
+  inset: auto 22px 22px 22px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.panel-preview-overlay span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(7, 13, 24, 0.78);
+  backdrop-filter: blur(10px);
+  color: var(--amber);
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.mobile-guide-card {
+  position: relative;
+  z-index: 2;
+  width: min(980px, 94vw);
+  margin: 26px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
   background:
-    radial-gradient(circle at 24px 50%, #ff5f57 0 5px, transparent 6px),
-    radial-gradient(circle at 44px 50%, #ffbd2e 0 5px, transparent 6px),
-    radial-gradient(circle at 64px 50%, #28c840 0 5px, transparent 6px),
+    radial-gradient(ellipse at 0% 0%, rgba(96, 165, 250, 0.11), transparent 55%),
     rgba(255,255,255,0.035);
 }
 
-.panel-frame-wrap iframe {
-  display: block;
-  width: 100%;
-  height: min(78vh, 900px);
-  min-height: 680px;
-  border: 0;
-  background: #070d18;
+.mobile-guide-card h2 {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.mobile-guide-card p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+.guide-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.guide-modal.open {
+  display: flex;
+}
+
+.guide-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.68);
+  backdrop-filter: blur(8px);
+}
+
+.guide-modal-panel {
+  position: relative;
+  width: min(860px, 94vw);
+  max-height: min(86vh, 760px);
+  overflow-y: auto;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(249, 115, 22, 0.14), transparent 54%),
+    linear-gradient(180deg, var(--panel), var(--bg-2));
+  box-shadow: 0 28px 90px rgba(0,0,0,0.6);
+  padding: 34px;
+}
+
+.guide-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.guide-modal-close:hover {
+  background: rgba(249, 115, 22, 0.14);
+}
+
+.guide-modal-panel h2 {
+  margin-top: 22px;
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.guide-modal-sub {
+  margin-top: 12px;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+.guide-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.guide-step {
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.035);
+}
+
+.guide-step h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--amber);
+}
+
+.guide-step ol {
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.guide-step strong {
+  color: var(--text);
+}
+
+.guide-panel-btn {
+  margin-top: 26px;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 @media (max-width: 700px) {
@@ -979,13 +1168,40 @@ img { max-width: 100%; height: auto; display: block; }
     padding-top: 130px;
   }
 
+  .panel-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .panel-actions .btn {
+    width: 100%;
+  }
+
   .panel-frame-wrap {
     width: 94vw;
     border-radius: 20px;
   }
 
-  .panel-frame-wrap iframe {
-    height: 76vh;
-    min-height: 600px;
+  .panel-preview-link {
+    height: 60vh;
+    min-height: 420px;
+  }
+
+  .mobile-guide-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mobile-guide-card .btn {
+    width: 100%;
+  }
+
+  .guide-modal-panel {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .guide-steps {
+    grid-template-columns: 1fr;
   }
 }
