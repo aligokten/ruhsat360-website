@@ -16,6 +16,310 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .office-panel-page {
+      position: relative;
+      min-height: 100vh;
+      padding: 150px 0 90px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.12), transparent 34%),
+        radial-gradient(circle at 50% 36%, rgba(251, 191, 36, 0.07), transparent 40%);
+    }
+
+    .office-panel-container {
+      width: min(1240px, 94vw);
+      margin: 0 auto;
+    }
+
+    .office-panel-hero {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 38px;
+    }
+
+    .office-panel-hero h1 {
+      margin-top: 22px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .office-panel-hero p {
+      max-width: 720px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .office-panel-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .office-panel-note {
+      margin-top: 16px !important;
+      font-size: 13px !important;
+      color: var(--muted) !important;
+    }
+
+    .office-panel-note strong {
+      color: var(--amber);
+    }
+
+    .office-panel-shell {
+      width: min(1200px, 94vw);
+      margin: 36px auto 0;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(249,115,22,0.14), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+      box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+    }
+
+    .office-panel-bar {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .office-panel-bar span {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+    }
+
+    .office-panel-bar span:nth-child(1) { background: #ff5f57; }
+    .office-panel-bar span:nth-child(2) { background: #ffbd2e; }
+    .office-panel-bar span:nth-child(3) { background: #28c840; }
+
+    .office-panel-frame {
+      display: block;
+      width: 100%;
+      height: min(78vh, 860px);
+      min-height: 680px;
+      border: 0;
+      background: #070d18;
+    }
+
+    .office-panel-fallback {
+      padding: 14px 18px;
+      border-top: 1px solid rgba(255,255,255,0.09);
+      display: flex;
+      justify-content: center;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .office-panel-fallback a {
+      color: var(--amber);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .office-panel-fallback a:hover {
+      text-decoration: underline;
+    }
+
+    .office-panel-guide-card {
+      width: min(980px, 94vw);
+      margin: 28px auto 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(96,165,250,0.13), transparent 44%),
+        rgba(255,255,255,0.035);
+    }
+
+    .office-panel-guide-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .office-panel-guide-card p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .office-guide-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .office-guide-modal.is-open {
+      display: flex;
+    }
+
+    .office-guide-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .office-guide-panel {
+      position: relative;
+      width: min(880px, 94vw);
+      max-height: 86vh;
+      overflow-y: auto;
+      padding: 34px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(249,115,22,0.16), transparent 48%),
+        linear-gradient(180deg, #0e1a2e, #0b1526);
+      box-shadow: 0 34px 110px rgba(0,0,0,0.68);
+      color: var(--text);
+    }
+
+    .office-guide-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .office-guide-close:hover {
+      background: rgba(249,115,22,0.16);
+    }
+
+    .office-guide-panel h2 {
+      margin-top: 22px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+
+    .office-guide-sub {
+      margin-top: 14px;
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .office-guide-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .office-guide-step {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.035);
+    }
+
+    .office-guide-step h3 {
+      font-size: 19px;
+      margin-bottom: 14px;
+      color: var(--amber);
+    }
+
+    .office-guide-step ol {
+      padding-left: 20px;
+      display: grid;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .office-guide-step strong {
+      color: var(--text);
+    }
+
+    .office-guide-panel .guide-open-panel {
+      margin-top: 28px;
+    }
+
+    body.office-modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 760px) {
+      .office-panel-page {
+        padding: 128px 0 70px;
+      }
+
+      .office-panel-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .office-panel-actions .btn {
+        width: 100%;
+      }
+
+      .office-panel-shell {
+        width: 94vw;
+        border-radius: 22px;
+      }
+
+      .office-panel-frame {
+        height: 72vh;
+        min-height: 560px;
+      }
+
+      .office-panel-guide-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .office-panel-guide-card .btn {
+        width: 100%;
+      }
+
+      .office-guide-panel {
+        padding: 28px 20px;
+        border-radius: 22px;
+      }
+
+      .office-guide-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -44,11 +348,9 @@
   </header>
 
   <main id="top">
-    <section class="panel-page">
-      <div class="panel-glow" aria-hidden="true"></div>
-
-      <div class="container panel-page-container">
-        <div class="panel-page-head reveal">
+    <section class="office-panel-page">
+      <div class="office-panel-container">
+        <div class="office-panel-hero reveal">
           <span class="badge">
             <span class="badge-dot">Panel</span> Ruhsat360 ofis giriş ekranı
           </span>
@@ -56,11 +358,11 @@
           <h1>Ofis Paneli</h1>
 
           <p>
-            Ruhsat360 müşteri paneline güvenli şekilde erişin. En iyi deneyim için paneli tam ekranda açabilir,
-            mobil cihazlarda ana ekranınıza kısayol olarak ekleyebilirsiniz.
+            Ruhsat360 müşteri paneline güvenli şekilde erişin. Paneli bu sayfada kullanabilir
+            veya daha geniş çalışma alanı için tam ekranda açabilirsiniz.
           </p>
 
-          <div class="panel-actions">
+          <div class="office-panel-actions">
             <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
               Paneli Tam Ekranda Aç
             </a>
@@ -69,37 +371,46 @@
               Windows Uygulamasını Talep Et
             </a>
 
-            <button type="button" class="btn btn-ghost btn-lg" id="mobile-guide-open">
+            <button type="button" class="btn btn-ghost btn-lg" data-open-office-guide>
               Mobil Kullanım Kılavuzu
             </button>
           </div>
 
-          <p class="panel-domain-note">
+          <p class="office-panel-note">
             Daha iyi bir kullanım deneyimi için <strong>Windows Masaüstü uygulamamızı indirebilirsiniz.</strong>
           </p>
         </div>
 
-        <div class="panel-frame-wrap reveal-up delay-1">
-          <div class="panel-browser-bar" aria-hidden="true">
+        <div class="office-panel-shell reveal-up delay-1">
+          <div class="office-panel-bar" aria-hidden="true">
             <span></span><span></span><span></span>
           </div>
 
-          <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="panel-preview-link" aria-label="Ruhsat360 panelini tam ekranda aç">
-            <img src="assets/panel-1.jpg" alt="Ruhsat360 ofis paneli önizleme ekranı" class="panel-preview-img" loading="lazy">
-            <div class="panel-preview-overlay">
-              <span>Güvenli giriş için paneli tam ekranda açın</span>
-            </div>
-          </a>
+          <iframe
+            class="office-panel-frame"
+            src="https://panel.ruhsat360.com/"
+            title="Ruhsat360 Ofis Paneli"
+            loading="eager"
+            referrerpolicy="no-referrer-when-downgrade"
+            allow="clipboard-read; clipboard-write; fullscreen"
+          ></iframe>
+
+          <div class="office-panel-fallback">
+            <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener">
+              Panel iframe içinde açılmazsa tam ekranda açın →
+            </a>
+          </div>
         </div>
 
-        <div class="mobile-guide-card reveal-up delay-2">
+        <div class="office-panel-guide-card reveal-up delay-2">
           <div>
             <h2>Mobil cihazlarda kullanım için</h2>
             <p>
               Ruhsat360’ı telefonunuzun ana ekranına ekleyerek uygulama gibi daha hızlı erişebilirsiniz.
             </p>
           </div>
-          <button type="button" class="btn btn-primary" id="mobile-guide-open-2">
+
+          <button type="button" class="btn btn-primary" data-open-office-guide>
             Kılavuzu Aç
           </button>
         </div>
@@ -107,23 +418,24 @@
     </section>
   </main>
 
-  <div class="guide-modal" id="mobile-guide-modal" aria-hidden="true">
-    <div class="guide-modal-backdrop" data-guide-close></div>
+  <div class="office-guide-modal" id="office-guide-modal" aria-hidden="true">
+    <div class="office-guide-backdrop" data-close-office-guide></div>
 
-    <div class="guide-modal-panel" role="dialog" aria-modal="true" aria-labelledby="guide-title">
-      <button type="button" class="guide-modal-close" data-guide-close aria-label="Kapat">×</button>
+    <div class="office-guide-panel" role="dialog" aria-modal="true" aria-labelledby="office-guide-title">
+      <button type="button" class="office-guide-close" data-close-office-guide aria-label="Kapat">×</button>
 
       <span class="badge">
         <span class="badge-dot">Mobil</span> Ana ekrana ekleme
       </span>
 
-      <h2 id="guide-title">Ruhsat360’ı ana ekrana ekleyin</h2>
-      <p class="guide-modal-sub">
-        Telefonunuzdan daha hızlı erişmek için paneli ana ekranınıza kısayol olarak ekleyebilirsiniz.
+      <h2 id="office-guide-title">Ruhsat360’ı ana ekrana ekleyin</h2>
+
+      <p class="office-guide-sub">
+        Telefonunuzdan veya tabletinizden daha hızlı erişmek için paneli ana ekranınıza kısayol olarak ekleyebilirsiniz.
       </p>
 
-      <div class="guide-steps">
-        <div class="guide-step">
+      <div class="office-guide-steps">
+        <div class="office-guide-step">
           <h3>Android</h3>
           <ol>
             <li>Tarayıcıda <strong>panel.ruhsat360.com</strong> adresini açın.</li>
@@ -133,7 +445,7 @@
           </ol>
         </div>
 
-        <div class="guide-step">
+        <div class="office-guide-step">
           <h3>iPhone / iPad</h3>
           <ol>
             <li>Safari’de <strong>panel.ruhsat360.com</strong> adresini açın.</li>
@@ -144,7 +456,7 @@
         </div>
       </div>
 
-      <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg guide-panel-btn">
+      <a href="https://panel.ruhsat360.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg guide-open-panel">
         Paneli Aç
       </a>
     </div>
@@ -189,37 +501,34 @@
 
   <script src="js/main.js"></script>
   <script>
-    const guideModal = document.getElementById("mobile-guide-modal");
-    const guideOpenButtons = [
-      document.getElementById("mobile-guide-open"),
-      document.getElementById("mobile-guide-open-2")
-    ].filter(Boolean);
+    (function () {
+      const modal = document.getElementById("office-guide-modal");
+      const openButtons = document.querySelectorAll("[data-open-office-guide]");
+      const closeButtons = document.querySelectorAll("[data-close-office-guide]");
 
-    function openGuideModal() {
-      guideModal?.classList.add("open");
-      guideModal?.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-    }
-
-    function closeGuideModal() {
-      guideModal?.classList.remove("open");
-      guideModal?.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-    }
-
-    guideOpenButtons.forEach((button) => {
-      button.addEventListener("click", openGuideModal);
-    });
-
-    document.querySelectorAll("[data-guide-close]").forEach((button) => {
-      button.addEventListener("click", closeGuideModal);
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeGuideModal();
+      function openModal() {
+        if (!modal) return;
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("office-modal-open");
       }
-    });
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("office-modal-open");
+      }
+
+      openButtons.forEach((button) => button.addEventListener("click", openModal));
+      closeButtons.forEach((button) => button.addEventListener("click", closeModal));
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
