@@ -80,16 +80,66 @@
   }
 
   /* ---------- SSS: tek seferde bir cevap açık ---------- */
-  var faqs = document.querySelectorAll(".faq details");
-  faqs.forEach(function (d) {
-    d.addEventListener("toggle", function () {
-      if (d.open) {
-        faqs.forEach(function (other) {
-          if (other !== d) other.open = false;
-        });
-      }
+  function bindFaq() {
+    var faqs = document.querySelectorAll(".faq details");
+    faqs.forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        if (d.open) {
+          faqs.forEach(function (other) {
+            if (other !== d) other.open = false;
+          });
+        }
+      });
     });
-  });
+  }
+  bindFaq();
+
+  /* ---------- İçeriği data/content.json'dan render et (admin panelinden yönetilir) ---------- */
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+  function renderPricing(p) {
+    if (!p) return;
+    var sub = document.getElementById("pricing-sub");
+    var note = document.getElementById("pricing-note");
+    var grid = document.getElementById("pricing-grid");
+    if (sub && p.subtitle) sub.textContent = p.subtitle;
+    if (note && p.note) note.textContent = p.note;
+    if (grid && Array.isArray(p.plans)) {
+      grid.innerHTML = p.plans.map(function (pl) {
+        var feats = (pl.features || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
+        var badge = pl.popular ? '<span class="pop-badge">En Popüler</span>' : "";
+        var per = pl.per ? '<span class="per">' + esc(pl.per) + "</span>" : "";
+        var btnClass = pl.popular ? "btn btn-primary" : "btn btn-ghost";
+        return '<article class="price-card' + (pl.popular ? " popular" : "") + '">' +
+          badge +
+          "<h3>" + esc(pl.name) + "</h3>" +
+          '<div class="price"><span class="amount">' + esc(pl.price) + "</span>" + per + "</div>" +
+          (pl.audience ? '<p class="price-audience">' + esc(pl.audience) + "</p>" : "") +
+          (pl.desc ? '<p class="price-desc">' + esc(pl.desc) + "</p>" : "") +
+          "<ul>" + feats + "</ul>" +
+          '<a href="#iletisim" class="' + btnClass + '">' + esc(pl.cta || "Hemen Başla") + "</a>" +
+          "</article>";
+      }).join("");
+    }
+  }
+  function renderFaq(items) {
+    var wrap = document.getElementById("faq");
+    if (!wrap || !Array.isArray(items) || !items.length) return;
+    wrap.innerHTML = items.map(function (it) {
+      return "<details><summary>" + esc(it.q) + "</summary><p>" + esc(it.a) + "</p></details>";
+    }).join("");
+    bindFaq();
+  }
+  fetch("data/content.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (data) {
+      if (data.pricing) renderPricing(data.pricing);
+      if (data.faq) renderFaq(data.faq);
+    })
+    .catch(function () { /* JSON yüklenemezse sayfadaki statik içerik kalır */ });
 
   /* ---------- İletişim formu → otomatik demo daveti ---------- */
   var form = document.getElementById("contact-form");

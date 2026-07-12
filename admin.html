@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetim Paneli — Ruhsat360</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--bg); }
+    .admin-wrap { width: min(880px, 92vw); margin: 0 auto; padding: 40px 0 140px; }
+    .admin-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .admin-head img { width: 150px; }
+    .admin-wrap h1 { font-size: 26px; margin-top: 20px; }
+    .admin-wrap > p.lead { color: var(--muted); margin: 6px 0 26px; font-size: 15px; }
+    .acard {
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-bottom: 20px;
+    }
+    .acard h2 { font-size: 18px; margin-bottom: 4px; }
+    .acard .hint { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 12px 0 5px; }
+    input[type=text], input[type=password], textarea {
+      width: 100%; padding: 11px 13px; border-radius: 10px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.04); color: var(--text); font-family: inherit; font-size: 14.5px;
+    }
+    textarea { resize: vertical; min-height: 64px; }
+    input:focus, textarea:focus { outline: none; border-color: rgba(249,115,22,.6); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .plan, .faq-item {
+      border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 14px;
+      background: rgba(255,255,255,.02); position: relative;
+    }
+    .plan h3, .faq-item h3 { font-size: 14px; color: var(--amber); margin-bottom: 4px; }
+    .chk { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px; color: var(--text); font-weight: 600; }
+    .chk input { width: 18px; height: 18px; accent-color: var(--orange); }
+    .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 999px; cursor: pointer; border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--text); font-family: inherit; font-weight: 600; }
+    .btn-sm:hover { border-color: rgba(249,115,22,.5); }
+    .btn-del { color: #fca5a5; border-color: rgba(248,113,113,.35); }
+    .btn-del:hover { background: rgba(248,113,113,.12); border-color: rgba(248,113,113,.6); }
+    .add-row { margin-top: 6px; }
+    .actionbar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(8,13,24,.92); backdrop-filter: blur(12px); border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    .actionbar .inner { width: min(880px, 92vw); margin: 0 auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .status { font-size: 13.5px; font-weight: 600; }
+    .status.ok { color: var(--green); }
+    .status.err { color: #fca5a5; }
+    .status.busy { color: var(--amber); }
+    details.help { margin-top: 12px; }
+    details.help summary { cursor: pointer; color: var(--amber); font-size: 13.5px; font-weight: 600; }
+    details.help ol { margin: 10px 0 0 18px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+    details.help code { background: rgba(255,255,255,.07); padding: 1px 6px; border-radius: 5px; }
+    .adv-toggle { color: var(--muted); font-size: 13px; cursor: pointer; text-decoration: underline; }
+    .adv { display: none; margin-top: 12px; }
+    .adv.open { display: block; }
+    @media (max-width: 640px) { .row2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <div class="admin-head">
+      <img src="assets/logo-transparent.png" alt="Ruhsat360">
+    </div>
+    <h1>Yönetim Paneli</h1>
+    <p class="lead">Fiyat/paketleri ve Sıkça Sorulan Sorular'ı buradan güncelleyin. Kaydettiğinizde site birkaç dakika içinde otomatik güncellenir.</p>
+
+    <!-- Bağlantı -->
+    <div class="acard">
+      <h2>1. Bağlantı</h2>
+      <p class="hint">Kaydedebilmek için GitHub erişim anahtarınızı (token) girin. Yalnızca bu tarayıcıda saklanır, siteye kaydedilmez.</p>
+      <label for="token">GitHub Token</label>
+      <input type="password" id="token" placeholder="github_pat_... veya ghp_...">
+      <div class="add-row">
+        <button class="btn-sm" id="save-token">Anahtarı bu cihaza kaydet</button>
+        <span class="adv-toggle" id="adv-toggle" style="margin-left:12px">Gelişmiş ayarlar</span>
+      </div>
+      <div class="adv" id="adv">
+        <div class="row2">
+          <div><label>Repo sahibi</label><input type="text" id="cfg-owner"></div>
+          <div><label>Repo adı</label><input type="text" id="cfg-repo"></div>
+        </div>
+        <div class="row2">
+          <div><label>Dal (branch)</label><input type="text" id="cfg-branch"></div>
+          <div><label>Dosya yolu</label><input type="text" id="cfg-path"></div>
+        </div>
+      </div>
+      <details class="help">
+        <summary>GitHub anahtarı (token) nasıl oluşturulur?</summary>
+        <ol>
+          <li><a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">github.com/settings/tokens</a> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+          <li>İsim verin, <b>Expiration</b> seçin (ör. 90 gün).</li>
+          <li><b>Repository access</b> → <b>Only select repositories</b> → <code>ruhsat360-website</code> seçin.</li>
+          <li><b>Permissions → Repository permissions → Contents</b> için <b>Read and write</b> seçin.</li>
+          <li>Oluşturup kopyalayın, yukarıdaki kutuya yapıştırın. (Anahtar bir daha gösterilmez.)</li>
+        </ol>
+      </details>
+    </div>
+
+    <!-- Fiyatlandırma -->
+    <div class="acard">
+      <h2>2. Fiyatlandırma</h2>
+      <p class="hint">Planları düzenleyin, ekleyin veya çıkarın.</p>
+      <label for="p-sub">Üst açıklama</label>
+      <input type="text" id="p-sub">
+      <label for="p-note">Alt not</label>
+      <input type="text" id="p-note">
+      <div id="plans" style="margin-top:18px"></div>
+      <button class="btn-sm" id="add-plan">+ Plan Ekle</button>
+    </div>
+
+    <!-- SSS -->
+    <div class="acard">
+      <h2>3. Sıkça Sorulan Sorular</h2>
+      <p class="hint">Soru ekleyin, düzenleyin veya çıkarın.</p>
+      <div id="faqs"></div>
+      <button class="btn-sm" id="add-faq">+ Soru Ekle</button>
+    </div>
+  </div>
+
+  <div class="actionbar">
+    <div class="inner">
+      <button class="btn btn-primary" id="save">Kaydet ve Yayınla</button>
+      <button class="btn-sm" id="download">JSON indir</button>
+      <button class="btn-sm" id="reload">Sıfırla (siteden yükle)</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+    var LS = "ruhsat360_admin";
+    var DEFAULTS = {
+      owner: "aligokten",
+      repo: "ruhsat360-website",
+      branch: "claude/ruhsat360-wix-site-eq8663",
+      path: "data/content.json"
+    };
+    var $ = function (id) { return document.getElementById(id); };
+    var cfg = Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(LS + "_cfg") || "{}"));
+    var fileSha = null;
+
+    // config alanlarını doldur
+    $("cfg-owner").value = cfg.owner; $("cfg-repo").value = cfg.repo;
+    $("cfg-branch").value = cfg.branch; $("cfg-path").value = cfg.path;
+    $("token").value = localStorage.getItem(LS + "_token") || "";
+
+    $("adv-toggle").addEventListener("click", function () { $("adv").classList.toggle("open"); });
+    $("save-token").addEventListener("click", function () {
+      localStorage.setItem(LS + "_token", $("token").value.trim());
+      saveCfg(); setStatus("Anahtar ve ayarlar bu cihaza kaydedildi.", "ok");
+    });
+    function saveCfg() {
+      cfg = { owner: $("cfg-owner").value.trim(), repo: $("cfg-repo").value.trim(),
+              branch: $("cfg-branch").value.trim(), path: $("cfg-path").value.trim() };
+      localStorage.setItem(LS + "_cfg", JSON.stringify(cfg));
+    }
+    function setStatus(msg, cls) {
+      var s = $("status"); s.textContent = msg; s.className = "status " + (cls || "");
+    }
+
+    /* ---- Plan blokları ---- */
+    function planNode(p) {
+      p = p || { name: "", price: "", per: "/yıl", audience: "", desc: "", features: [], cta: "Hemen Başla", popular: false };
+      var el = document.createElement("div");
+      el.className = "plan";
+      el.innerHTML =
+        '<h3>Plan</h3>' +
+        '<div class="row2"><div><label>Plan adı</label><input type="text" class="f-name"></div>' +
+        '<div><label>Fiyat (ör. 9.999₺)</label><input type="text" class="f-price"></div></div>' +
+        '<div class="row2"><div><label>Periyot (ör. /yıl)</label><input type="text" class="f-per"></div>' +
+        '<div><label>Buton yazısı</label><input type="text" class="f-cta"></div></div>' +
+        '<label>Hedef kitle</label><input type="text" class="f-audience">' +
+        '<label>Açıklama</label><input type="text" class="f-desc">' +
+        '<label>Özellikler (her satıra bir madde)</label><textarea class="f-features"></textarea>' +
+        '<label class="chk"><input type="checkbox" class="f-popular"> "En Popüler" olarak işaretle</label>' +
+        '<div class="add-row"><button class="btn-sm btn-del f-remove">Bu planı sil</button></div>';
+      el.querySelector(".f-name").value = p.name || "";
+      el.querySelector(".f-price").value = p.price || "";
+      el.querySelector(".f-per").value = p.per || "";
+      el.querySelector(".f-cta").value = p.cta || "";
+      el.querySelector(".f-audience").value = p.audience || "";
+      el.querySelector(".f-desc").value = p.desc || "";
+      el.querySelector(".f-features").value = (p.features || []).join("\n");
+      el.querySelector(".f-popular").checked = !!p.popular;
+      el.querySelector(".f-remove").addEventListener("click", function () { el.remove(); });
+      return el;
+    }
+    function faqNode(it) {
+      it = it || { q: "", a: "" };
+      var el = document.createElement("div");
+      el.className = "faq-item";
+      el.innerHTML =
+        '<h3>Soru</h3>' +
+        '<label>Soru</label><input type="text" class="f-q">' +
+        '<label>Cevap</label><textarea class="f-a"></textarea>' +
+        '<div class="add-row"><button class="btn-sm btn-del f-remove">Bu soruyu sil</button></div>';
+      el.querySelector(".f-q").value = it.q || "";
+      el.querySelector(".f-a").value = it.a || "";
+      el.querySelector(".f-remove").addEventListener("click", function () { el.remove(); });
+      return el;
+    }
+    $("add-plan").addEventListener("click", function () { $("plans").appendChild(planNode()); });
+    $("add-faq").addEventListener("click", function () { $("faqs").appendChild(faqNode()); });
+
+    /* ---- Formu doldur ---- */
+    function populate(data) {
+      $("p-sub").value = (data.pricing && data.pricing.subtitle) || "";
+      $("p-note").value = (data.pricing && data.pricing.note) || "";
+      $("plans").innerHTML = "";
+      ((data.pricing && data.pricing.plans) || []).forEach(function (p) { $("plans").appendChild(planNode(p)); });
+      $("faqs").innerHTML = "";
+      (data.faq || []).forEach(function (it) { $("faqs").appendChild(faqNode(it)); });
+    }
+    function collect() {
+      var plans = Array.prototype.map.call($("plans").children, function (el) {
+        return {
+          name: el.querySelector(".f-name").value.trim(),
+          price: el.querySelector(".f-price").value.trim(),
+          per: el.querySelector(".f-per").value.trim(),
+          audience: el.querySelector(".f-audience").value.trim(),
+          desc: el.querySelector(".f-desc").value.trim(),
+          features: el.querySelector(".f-features").value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean),
+          cta: el.querySelector(".f-cta").value.trim(),
+          popular: el.querySelector(".f-popular").checked
+        };
+      });
+      var faq = Array.prototype.map.call($("faqs").children, function (el) {
+        return { q: el.querySelector(".f-q").value.trim(), a: el.querySelector(".f-a").value.trim() };
+      }).filter(function (it) { return it.q || it.a; });
+      return { pricing: { subtitle: $("p-sub").value.trim(), note: $("p-note").value.trim(), plans: plans }, faq: faq };
+    }
+
+    /* ---- Siteden mevcut içeriği yükle ---- */
+    function loadContent() {
+      setStatus("İçerik yükleniyor…", "busy");
+      fetch("data/content.json?ts=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+        .then(function (data) { populate(data); setStatus("Mevcut içerik yüklendi.", "ok"); })
+        .catch(function () { setStatus("İçerik yüklenemedi. Boş formla başlayabilirsiniz.", "err"); populate({ pricing: {}, faq: [] }); });
+    }
+
+    /* ---- UTF-8 güvenli base64 ---- */
+    function b64(str) { return btoa(unescape(encodeURIComponent(str))); }
+
+    /* ---- Kaydet (GitHub API) ---- */
+    function save() {
+      saveCfg();
+      var token = $("token").value.trim();
+      if (!token) { setStatus("Önce GitHub anahtarınızı girip kaydedin.", "err"); return; }
+      localStorage.setItem(LS + "_token", token);
+      var content = collect();
+      var json = JSON.stringify(content, null, 2) + "\n";
+      var api = "https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + "/contents/" + cfg.path;
+      var headers = { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json" };
+      setStatus("Kaydediliyor…", "busy");
+      // önce güncel sha'yı al
+      fetch(api + "?ref=" + encodeURIComponent(cfg.branch) + "&ts=" + Date.now(), { headers: headers, cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : (r.status === 404 ? { sha: null } : r.json().then(function (e) { throw new Error(e.message || r.status); })); })
+        .then(function (info) {
+          var body = { message: "content: admin panelinden güncelleme", content: b64(json), branch: cfg.branch };
+          if (info && info.sha) body.sha = info.sha;
+          return fetch(api, { method: "PUT", headers: headers, body: JSON.stringify(body) });
+        })
+        .then(function (r) { return r.ok ? r.json() : r.json().then(function (e) { throw new Error(e.message || r.status); }); })
+        .then(function () { setStatus("✓ Kaydedildi! Site 1-2 dakika içinde güncellenecek.", "ok"); })
+        .catch(function (e) { setStatus("Kaydedilemedi: " + e.message + " (anahtar/izinleri kontrol edin)", "err"); });
+    }
+
+    function download() {
+      var json = JSON.stringify(collect(), null, 2) + "\n";
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+      a.download = "content.json"; a.click();
+      setStatus("content.json indirildi. İsterseniz repoda data/ klasörüne elle yükleyebilirsiniz.", "ok");
+    }
+
+    $("save").addEventListener("click", save);
+    $("download").addEventListener("click", download);
+    $("reload").addEventListener("click", loadContent);
+
+    loadContent();
+  })();
+  </script>
+</body>
+</html>

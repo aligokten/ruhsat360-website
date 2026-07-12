@@ -1,0 +1,60 @@
+{
+  "pricing": {
+    "subtitle": "Tüm planlar yıllık faturalandırılır. İhtiyacınıza göre istediğiniz zaman yükseltebilirsiniz.",
+    "note": "İstediğiniz zaman iptal edebilirsiniz; erişiminiz dönem sonuna kadar devam eder.",
+    "plans": [
+      {
+        "name": "Başlangıç",
+        "price": "9.999₺",
+        "per": "/yıl",
+        "audience": "Küçük mimarlık ofisleri için",
+        "desc": "Ruhsat, evrak ve proje takibini tek panelde yönetin.",
+        "features": ["3 kullanıcı", "10 aktif proje"],
+        "cta": "Hemen Başla",
+        "popular": false
+      },
+      {
+        "name": "Ofis Pro",
+        "price": "19.999₺",
+        "per": "/yıl",
+        "audience": "Büyüyen ofisler için",
+        "desc": "Ekip koordinasyonu, görev takibi ve proje süreçlerini daha güçlü yönetin.",
+        "features": ["10 kullanıcı", "50 aktif proje"],
+        "cta": "Hemen Başla",
+        "popular": true
+      },
+      {
+        "name": "Kurumsal",
+        "price": "34.999₺",
+        "per": "/yıl",
+        "audience": "Proje müşavirlik firmaları için",
+        "desc": "Özel uyarlama, geniş ekip yönetimi ve kurumsal ölçekli operasyon kontrolü.",
+        "features": ["Sınırsız kullanıcı", "Sınırsız proje", "Müşteriye özel ilave eklentiler"],
+        "cta": "Bize Ulaşın",
+        "popular": false
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Verilerimiz ne kadar güvende?",
+      "a": "Verileriniz Google Firebase/Firestore altyapısında saklanır; yalnızca ofis üyeleriniz kendi hesaplarıyla erişebilir. Erişim kuralları, ofis dışından hiç kimsenin verilerinize ulaşamayacağı şekilde yapılandırılmıştır."
+    },
+    {
+      "q": "Google Drive entegrasyonu zorunlu mu?",
+      "a": "Hayır, isteğe bağlıdır. Bağladığınızda uygulama yalnızca kendi oluşturduğu proje klasörlerine erişir; Drive'ınızdaki diğer dosyalara erişemez."
+    },
+    {
+      "q": "Ekibime kaç kişi ekleyebilirim?",
+      "a": "Plana göre değişir; Başlangıç planında 3, Ofis Pro planında 10 kullanıcıya kadar ekip ekleyebilirsiniz. Kurumsal planda sınır yoktur."
+    },
+    {
+      "q": "İstediğim zaman iptal edebilir miyim?",
+      "a": "Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz; mevcut fatura döneminin sonuna kadar erişiminiz devam eder."
+    },
+    {
+      "q": "Masaüstü uygulaması var mı?",
+      "a": "Evet, Windows için kurulum dosyası mevcuttur; masaüstü uygulaması aynı canlı sistemi kullanır, internet bağlantısı gerektirir."
+    }
+  ]
+}
