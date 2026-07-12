@@ -71,6 +71,14 @@
         "meta": "45 dk · online",
         "price": "500₺",
         "cta": "Randevu Al"
+      },
+      {
+        "icon": "👨🏻‍🏫",
+        "title": "Gelişmiş Eğitim Seti",
+        "desc": "Tüm süreçlerin detaylı olarak anlatıldığı, ekran görüntüleriyle desteklenmiş eğitim kılavuzu.",
+        "meta": "Online/İndirilebilir",
+        "price": "2500",
+        "cta": "Randevu Al"
       }
     ]
   },
