@@ -9,7 +9,10 @@
         "per": "/yıl",
         "audience": "Küçük mimarlık ofisleri için",
         "desc": "Ruhsat, evrak ve proje takibini tek panelde yönetin.",
-        "features": ["3 kullanıcı", "10 aktif proje"],
+        "features": [
+          "3 kullanıcı",
+          "10 aktif proje"
+        ],
         "cta": "Hemen Başla",
         "popular": false
       },
@@ -19,7 +22,10 @@
         "per": "/yıl",
         "audience": "Büyüyen ofisler için",
         "desc": "Ekip koordinasyonu, görev takibi ve proje süreçlerini daha güçlü yönetin.",
-        "features": ["10 kullanıcı", "50 aktif proje"],
+        "features": [
+          "10 kullanıcı",
+          "50 aktif proje"
+        ],
         "cta": "Hemen Başla",
         "popular": true
       },
@@ -29,7 +35,11 @@
         "per": "/yıl",
         "audience": "Proje müşavirlik firmaları için",
         "desc": "Özel uyarlama, geniş ekip yönetimi ve kurumsal ölçekli operasyon kontrolü.",
-        "features": ["Sınırsız kullanıcı", "Sınırsız proje", "Müşteriye özel ilave eklentiler"],
+        "features": [
+          "Sınırsız kullanıcı",
+          "Sınırsız proje",
+          "Müşteriye özel ilave eklentiler"
+        ],
         "cta": "Bize Ulaşın",
         "popular": false
       }
@@ -54,7 +64,7 @@
     },
     {
       "q": "Masaüstü uygulaması var mı?",
-      "a": "Evet, Windows için kurulum dosyası mevcuttur; masaüstü uygulaması aynı canlı sistemi kullanır, internet bağlantısı gerektirir."
+      "a": "Evet, Windows için kurulum dosyası mevcuttur; masaüstü uygulaması aynı canlı sistemi kullanır, internet bağlantısı gerektirir. Masaüstü uygulaması için panel üzerinde Ruhsat360 ekibine talep iletebilirsiniz."
     }
   ]
 }
