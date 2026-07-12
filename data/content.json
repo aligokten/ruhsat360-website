@@ -45,6 +45,35 @@
       }
     ]
   },
+  "consulting": {
+    "subtitle": "Ruhsat360'ı ofisinize en verimli şekilde entegre etmeniz için ücretli danışmanlık ve eğitim hizmetleri.",
+    "items": [
+      {
+        "icon": "🧭",
+        "title": "Kurulum Danışmanlığı",
+        "desc": "Ofis yapınıza uygun hizmet türleri, aşama şablonları ve kullanıcı rollerinin birlikte yapılandırılması.",
+        "meta": "1 saat · online",
+        "price": "750₺",
+        "cta": "Randevu Al"
+      },
+      {
+        "icon": "🎓",
+        "title": "Ekip Eğitimi",
+        "desc": "Tüm ekibinize sistemin günlük kullanımının (proje açma, evrak yükleme, aşama takibi) uygulamalı anlatımı.",
+        "meta": "2 saat · online, ekip",
+        "price": "1.500₺",
+        "cta": "Randevu Al"
+      },
+      {
+        "icon": "🔗",
+        "title": "Drive Entegrasyon Desteği",
+        "desc": "Google Cloud/OAuth kurulumunun sizin adınıza yapılandırılmasında birebir destek.",
+        "meta": "45 dk · online",
+        "price": "500₺",
+        "cta": "Randevu Al"
+      }
+    ]
+  },
   "faq": [
     {
       "q": "Verilerimiz ne kadar güvende?",

@@ -115,9 +115,19 @@
       <button class="btn-sm" id="add-plan">+ Plan Ekle</button>
     </div>
 
+    <!-- Danışmanlık -->
+    <div class="acard">
+      <h2>3. Danışmanlık ve Eğitim</h2>
+      <p class="hint">Danışmanlık/eğitim seçeneklerini düzenleyin, ekleyin veya çıkarın.</p>
+      <label for="c-sub">Üst açıklama</label>
+      <input type="text" id="c-sub">
+      <div id="consults" style="margin-top:18px"></div>
+      <button class="btn-sm" id="add-consult">+ Hizmet Ekle</button>
+    </div>
+
     <!-- SSS -->
     <div class="acard">
-      <h2>3. Sıkça Sorulan Sorular</h2>
+      <h2>4. Sıkça Sorulan Sorular</h2>
       <p class="hint">Soru ekleyin, düzenleyin veya çıkarın.</p>
       <div id="faqs"></div>
       <button class="btn-sm" id="add-faq">+ Soru Ekle</button>
@@ -207,7 +217,30 @@
       el.querySelector(".f-remove").addEventListener("click", function () { el.remove(); });
       return el;
     }
+    function consultNode(c) {
+      c = c || { icon: "🧭", title: "", desc: "", meta: "", price: "", cta: "Randevu Al" };
+      var el = document.createElement("div");
+      el.className = "plan";
+      el.innerHTML =
+        '<h3>Hizmet</h3>' +
+        '<div class="row2"><div><label>İkon (emoji)</label><input type="text" class="f-icon"></div>' +
+        '<div><label>Başlık</label><input type="text" class="f-title"></div></div>' +
+        '<label>Açıklama</label><textarea class="f-desc"></textarea>' +
+        '<div class="row2"><div><label>Süre/biçim (ör. 1 saat · online)</label><input type="text" class="f-meta"></div>' +
+        '<div><label>Fiyat (ör. 750₺)</label><input type="text" class="f-price"></div></div>' +
+        '<label>Buton yazısı</label><input type="text" class="f-cta">' +
+        '<div class="add-row"><button class="btn-sm btn-del f-remove">Bu hizmeti sil</button></div>';
+      el.querySelector(".f-icon").value = c.icon || "";
+      el.querySelector(".f-title").value = c.title || "";
+      el.querySelector(".f-desc").value = c.desc || "";
+      el.querySelector(".f-meta").value = c.meta || "";
+      el.querySelector(".f-price").value = c.price || "";
+      el.querySelector(".f-cta").value = c.cta || "";
+      el.querySelector(".f-remove").addEventListener("click", function () { el.remove(); });
+      return el;
+    }
     $("add-plan").addEventListener("click", function () { $("plans").appendChild(planNode()); });
+    $("add-consult").addEventListener("click", function () { $("consults").appendChild(consultNode()); });
     $("add-faq").addEventListener("click", function () { $("faqs").appendChild(faqNode()); });
 
     /* ---- Formu doldur ---- */
@@ -216,6 +249,9 @@
       $("p-note").value = (data.pricing && data.pricing.note) || "";
       $("plans").innerHTML = "";
       ((data.pricing && data.pricing.plans) || []).forEach(function (p) { $("plans").appendChild(planNode(p)); });
+      $("c-sub").value = (data.consulting && data.consulting.subtitle) || "";
+      $("consults").innerHTML = "";
+      ((data.consulting && data.consulting.items) || []).forEach(function (c) { $("consults").appendChild(consultNode(c)); });
       $("faqs").innerHTML = "";
       (data.faq || []).forEach(function (it) { $("faqs").appendChild(faqNode(it)); });
     }
@@ -232,10 +268,24 @@
           popular: el.querySelector(".f-popular").checked
         };
       });
+      var consults = Array.prototype.map.call($("consults").children, function (el) {
+        return {
+          icon: el.querySelector(".f-icon").value.trim(),
+          title: el.querySelector(".f-title").value.trim(),
+          desc: el.querySelector(".f-desc").value.trim(),
+          meta: el.querySelector(".f-meta").value.trim(),
+          price: el.querySelector(".f-price").value.trim(),
+          cta: el.querySelector(".f-cta").value.trim()
+        };
+      }).filter(function (c) { return c.title || c.desc; });
       var faq = Array.prototype.map.call($("faqs").children, function (el) {
         return { q: el.querySelector(".f-q").value.trim(), a: el.querySelector(".f-a").value.trim() };
       }).filter(function (it) { return it.q || it.a; });
-      return { pricing: { subtitle: $("p-sub").value.trim(), note: $("p-note").value.trim(), plans: plans }, faq: faq };
+      return {
+        pricing: { subtitle: $("p-sub").value.trim(), note: $("p-note").value.trim(), plans: plans },
+        consulting: { subtitle: $("c-sub").value.trim(), items: consults },
+        faq: faq
+      };
     }
 
     /* ---- Siteden mevcut içeriği yükle ---- */

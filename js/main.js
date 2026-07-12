@@ -125,6 +125,26 @@
       }).join("");
     }
   }
+  function renderConsulting(c) {
+    if (!c) return;
+    var sub = document.getElementById("consult-sub");
+    var grid = document.getElementById("consult-grid");
+    if (sub && c.subtitle) sub.textContent = c.subtitle;
+    if (grid && Array.isArray(c.items)) {
+      grid.innerHTML = c.items.map(function (it) {
+        var meta = (it.meta || it.price)
+          ? '<div class="consult-meta"><span>' + esc(it.meta || "") + "</span><b>" + esc(it.price || "") + "</b></div>"
+          : "";
+        return '<article class="card consult">' +
+          '<div class="card-icon">' + esc(it.icon || "🧭") + "</div>" +
+          "<h3>" + esc(it.title) + "</h3>" +
+          "<p>" + esc(it.desc) + "</p>" +
+          meta +
+          '<a href="#iletisim" class="btn btn-ghost">' + esc(it.cta || "Randevu Al") + "</a>" +
+          "</article>";
+      }).join("");
+    }
+  }
   function renderFaq(items) {
     var wrap = document.getElementById("faq");
     if (!wrap || !Array.isArray(items) || !items.length) return;
@@ -137,6 +157,7 @@
     .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
     .then(function (data) {
       if (data.pricing) renderPricing(data.pricing);
+      if (data.consulting) renderConsulting(data.consulting);
       if (data.faq) renderFaq(data.faq);
     })
     .catch(function () { /* JSON yüklenemezse sayfadaki statik içerik kalır */ });
