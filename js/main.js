@@ -162,6 +162,35 @@
     })
     .catch(function () { /* JSON yüklenemezse sayfadaki statik içerik kalır */ });
 
+  /* ---------- Demo başarı modalı ---------- */
+  var demoModal = document.getElementById("demo-modal");
+  function closeDemoModal() {
+    if (!demoModal) return;
+    demoModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+  function showDemoModal(email) {
+    if (!demoModal) return;
+    var emailEl = document.getElementById("demo-modal-email");
+    if (emailEl) emailEl.textContent = email ? "(" + email + ")" : "(belirttiğiniz e-posta)";
+    demoModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    var goBtn = document.getElementById("demo-modal-go");
+    if (goBtn) { try { goBtn.focus(); } catch (e) {} }
+  }
+  if (demoModal) {
+    var cX = document.getElementById("demo-modal-close");
+    var cD = document.getElementById("demo-modal-dismiss");
+    if (cX) cX.addEventListener("click", closeDemoModal);
+    if (cD) cD.addEventListener("click", closeDemoModal);
+    demoModal.addEventListener("click", function (e) {
+      if (e.target === demoModal) closeDemoModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !demoModal.hidden) closeDemoModal();
+    });
+  }
+
   /* ---------- İletişim formu → otomatik demo daveti ---------- */
   var form = document.getElementById("contact-form");
   if (form) {
@@ -241,6 +270,7 @@
           note.className = "form-note success";
         }
 
+        showDemoModal(email);
         form.reset();
       } catch (error) {
         if (note) {
